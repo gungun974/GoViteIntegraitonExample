@@ -1,0 +1,38 @@
+package layouts
+
+import context_key "gungun974.com/viteintegration/internal/context"
+
+type AppPageParams struct {
+	Class string
+}
+
+templ AppPage(params AppPageParams) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<title></title>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<meta name="description" content=""/>
+			<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+			<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+			<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+			<meta name="theme-color" content="#ffffff"/>
+			<script src={ ctx.Value(context_key.VITE_SCRIPT_KEY).(string) } type="module"></script>
+			if ctx.Value(context_key.VITE_CLIENT_KEY) != nil {
+				<script src={ ctx.Value(context_key.VITE_CLIENT_KEY).(string) } type="module"></script>
+			}
+			if ctx.Value(context_key.VITE_STYLE_KEY) != nil {
+				<link
+					rel="stylesheet"
+					href={ ctx.Value(context_key.VITE_STYLE_KEY).(string) }
+				/>
+			}
+		</head>
+		<body
+			class={ params.Class, }
+		>
+			{ children... }
+		</body>
+	</html>
+}
