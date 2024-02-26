@@ -74,6 +74,14 @@ func httpProxy(url string, w http.ResponseWriter) {
 	io.Copy(w, proxyResponse.Body)
 }
 
+func ViteReload() {
+	resp, err := http.Get("http://127.0.0.1:5174/trigger-refresh")
+	if err != nil {
+		return
+	}
+	resp.Body.Close()
+}
+
 func GetViteStyleURL() string {
 	return ""
 }

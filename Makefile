@@ -28,7 +28,6 @@ build-server: build-server-prepare
 debug:
 	templ generate
 	$(GO) build -tags debug -o ${DEST}$(SERVER_BINARY) ./cmd/server/.
-	curl -s -o /dev/null -f http://localhost:5174/trigger-refresh || true
 
 run: build-server
 	cd ${DEST}; ./$(SERVER_BINARY)

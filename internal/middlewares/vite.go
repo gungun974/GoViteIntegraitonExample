@@ -62,6 +62,8 @@ func ViteMiddleware(next http.Handler) http.Handler {
 	})
 }
 
+func ViteReload() {}
+
 func GetViteStyleURL() string {
 	return viteStyleURL
 }

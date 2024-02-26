@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"gungun974.com/viteintegration/internal/logger"
+	"gungun974.com/viteintegration/internal/middlewares"
 	"gungun974.com/viteintegration/internal/routes"
 
 	"github.com/joho/godotenv"
@@ -40,6 +41,8 @@ func main() {
 	}
 
 	logger.MainLogger.Infof("🌍 WebServer is running at http://127.0.0.1:%s", port)
+
+	middlewares.ViteReload()
 
 	err = http.ListenAndServe(":"+port, router)
 
